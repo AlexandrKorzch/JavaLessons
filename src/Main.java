@@ -146,4 +146,21 @@ public class Main {
         }
         return result;
     }
+
+    private static int[] selectionSort(int[] array) {
+        int replaceable;
+        int minInd;
+        for (int i = 0; i < array.length; i++) {
+            replaceable = array[i];
+            minInd = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[i] && array[j] < array[minInd]) {
+                    minInd = j;
+                }
+            }
+            array[i] = array[minInd];
+            array[minInd] = replaceable;
+        }
+        return array;
+    }
 }
