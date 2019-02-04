@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -81,10 +79,9 @@ public class Main {
             }
             return result;
         }
+    }
 
-
-
- private static  int[] quickSort(int[] array) {
+    private static int[] quickSort(int[] array) {
         //divide on two parts and support element
         List<Integer> firstPart = new ArrayList<>();
         List<Integer> secondPart = new ArrayList<>();
