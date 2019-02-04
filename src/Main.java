@@ -20,4 +20,28 @@ public class Main {
         }
         return array;
     }
+
+    private static int[] insertionSort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int movable = array[i];
+            int moreInd = i - 1;
+            int more = array[moreInd];
+            boolean moved = false;
+            while (movable <= more) {
+                moved = true;
+                array[moreInd + 1] = more;
+                if (moreInd > 0) {
+                    moreInd -= 1;
+                    more = array[moreInd];
+                    if (movable > more) moreInd += 1;
+                } else {
+                    break;
+                }
+            }
+            if (moved) {
+                array[moreInd] = movable;
+            }
+        }
+        return array;
+    }
 }
