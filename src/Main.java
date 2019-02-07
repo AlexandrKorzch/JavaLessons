@@ -1,6 +1,5 @@
-import exception.ElementNotFoundException;
-
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class Main {
 
@@ -13,49 +12,35 @@ public class Main {
         foundIndexIfElementNotExists(sortedArray);
     }
 
-
     /**
      * Method for test. We try to find index of element in sorted array in case array doesn't have this element
-     * */
+     */
     private static void foundIndexIfElementNotExists(int[] sortedArray) {
         int startArrayIndex = 0;
         int foundedElement = 7;
-        int index = getIndex(sortedArray, startArrayIndex, foundedElement);
+        int index = getElementIndex(foundedElement, sortedArray, startArrayIndex);
         System.out.println(index);
     }
 
     /**
      * Method for test. We try to find index of element in sorted array in case element exists in this array
-     * */
+     */
     private static void foundIndexIfElementExistInArray(int[] sortedArray) {
         int startArrayIndex = 0;
         for (int i = 0; i < sortedArray.length; i++) {
             int elementFromArray = sortedArray[i];
-            int index = getIndex(sortedArray, startArrayIndex, elementFromArray);
+            int index = getElementIndex(elementFromArray, sortedArray, startArrayIndex);
             System.out.println("element - " + elementFromArray + ", i - " + i + ", index - " + index);
         }
     }
 
     /**
-     * Method for getting index from sorted array
-     * */
-    private static int getIndex(int[] sortedArray, int startArrayIndex, int foundedElement) {
-        int index = -1;
-        try {
-            index = getElementIndex(foundedElement, sortedArray, startArrayIndex);
-        } catch (ElementNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-        return index;
-    }
-
-    /**
      * Implementation of binary search with recursion
-     * */
-    private static int getElementIndex(int element, int[] array, int startArrayIndex) throws ElementNotFoundException {
+     */
+    private static int getElementIndex(int element, int[] array, int startArrayIndex) throws NoSuchElementException {
         int supportIndex = array.length / 2;
         if (array.length == 1 && element != array[supportIndex]) {
-            throw new ElementNotFoundException();
+            throw new NoSuchElementException("Element doesn't exist in this array");
         } else if (element > array[supportIndex]) {
             array = Arrays.copyOfRange(array, supportIndex, array.length);
             startArrayIndex += supportIndex;
